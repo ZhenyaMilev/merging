@@ -10,7 +10,7 @@
         "font_size": 14,
         "color_scheme": "",
         "enable_divider": false,
-        "divider_color": "#cccccc",
+        "divider_color": "#ccc",
         "padding_top": 12,
         "padding_bottom": 12
       }
@@ -25,6 +25,14 @@
         "price": {
           "type": "price",
           "settings": {}
+        },
+        "inventory_WbBbkc": {
+          "type": "inventory",
+          "settings": {
+            "text_style": "body",
+            "inventory_threshold": 3,
+            "show_inventory_quantity": true
+          }
         },
         "variant_picker": {
           "type": "variant_picker",
@@ -58,6 +66,7 @@
       "block_order": [
         "title",
         "price",
+        "inventory_WbBbkc",
         "variant_picker",
         "quantity_selector",
         "buy_buttons",

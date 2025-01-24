@@ -20,37 +20,20 @@
     align-items: center;
   }
 
-
-.ss-ig-button {
-  height: 100px; 
-  width: 120px; 
-  border-radius: 12px; 
-  border: 0.2rem solid {{section.settings.text-color}}; 
-  display: flex;
-  flex-direction: column; 
-  justify-content: center; 
-  align-items: center; 
-  text-decoration: none; 
-  color: {{section.settings.text-color}}; 
-  padding: 5px; 
-  margin-bottom: 1rem; 
-}
-
-
-.ss-ig-button svg {
-  width: 50px;
-  height: 50px;
-  margin-bottom: 4px; 
-}
-
-
-.ss-ig-button p {
-  font-size: 12px; 
-  margin: 0; 
-  text-align: center; 
-}
-
-
+  .ss-ig-button {
+    height:100px;
+    width:120px;
+    border-radius:12px;
+    border: 0.2rem solid {{section.settings.text-color}};
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    color: {{section.settings.text-color}};
+    padding:5px;
+    margin-bottom: 1rem;
+  }
 
   .ss-instafeed-header {
     color:{{section.settings.text-color}};
@@ -70,45 +53,73 @@
     word-break: break-word;
   }
 
-  /* Галерея */
-.ss-isntafeed-img-wrapper {
-  display: flex;
-  justify-content: center; 
-  align-items: flex-end; 
-  gap: 0; 
-  padding: 0;
-  margin: 0;
-  flex-wrap: nowrap; 
-  overflow: hidden; 
-}
-
-.ss-gallery_all-item {
-  flex: 0 0 calc(100% / 8); 
-  max-width: calc(100% / 8); 
-  aspect-ratio: 1 / 1; 
-  padding: 0;
-  margin: 0;
-}
-
-.ss-gallery_all-item a img, 
-.ss-gallery_all-item a svg {
-  width: 100%;
-  height: 100%;
-  object-fit: cover; /
-  object-position: center;
-}
-
-
-@media screen and (max-width: 750px) {
   .ss-isntafeed-img-wrapper {
-    flex-wrap: wrap; 
+    width:100%;
+    display: flex;
+    flex-wrap: nowrap; /* Пости в одну строку */
+    overflow-x: auto; /* Горизонтальна прокрутка */
+    margin:0;
+    padding:0 {{section.settings.padding_image}}px;
+    justify-content: flex-start;
   }
 
   .ss-gallery_all-item {
-    flex: 1 1 calc(100% / 2); 
-    max-width: calc(100% / 2);
+     flex: 0 0 auto; /* Елементи займають фіксовану ширину */
+     width: calc(25%);
+     aspect-ratio: 1 / 1;
+     padding: {{section.settings.padding_image}}px;
+     margin-bottom: 0; /* Видалено нижній відступ */
   }
-}
+
+  .ss-gallery_all-item a img, .ss-gallery_all-item a svg {
+      max-width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+      object-position: center;
+  }
+
+  .ss-ig-button p {
+    font-size: {{section.settings.handle_size}}px;
+    margin:6px 0 0 0;
+    line-height:1;
+    word-break: break-word;
+    text-align:center;
+  }
+
+  .ss-gallery_all-item:hover {
+    background-color: {{section.settings.background-color}};
+    opacity:0.6;
+  }
+
+  @media screen and (max-width: 750px) {
+     .ss-gallery_all-item {
+       width: calc(50%);
+     }
+    .ss-instafeed-hashtag {
+      font-size:{{ section.settings.hashtag_size | times: 0.75 | round: 0 }}px;
+    }
+
+    .ss-instafeed-header {
+      font-size:{{ section.settings.header_size | times: 0.75 | round: 0 }}px;
+    }
+    .ss-gallery_all-item {
+       padding: {{section.settings.padding_image | times: 0.75 | round: 0 }}px;
+    }
+
+    .ss-isntafeed-img-wrapper {
+      padding:0 {{section.settings.padding_image | times: 0.75 | round: 0 }}px;
+    }
+
+    .ss-ig-button {
+      height: 80px;
+      width: 100px;
+    }
+
+     .ss-gallery_all-item:nth-last-child(-n+{{section.settings.hide_image_mobile}}) {
+       display:none;
+     }
+  }
 {%- endstyle -%}
 
 <div style="background-color:{{section.settings.background-color}};">
@@ -132,7 +143,7 @@
   <div class="ss-isntafeed-img-wrapper">
   {% for block in section.blocks %}
     <div class="ss-gallery_all-item">
-      <a href="https://www.instagram.com/hobbydrone.cz/" target="_blank">
+      <a href="{{ block.settings.gallery_url }}" target="_blank">
         {%- if block.settings.gallery_photo -%}
           {{ block.settings.gallery_photo | image_url: width: block.settings.gallery_photo.width | image_tag: alt: block.settings.gallery_photo.alt }}
         {%- else -%}
@@ -331,8 +342,6 @@
 
 {% javascript %}
 {% endjavascript %}
-
-
 
      
 

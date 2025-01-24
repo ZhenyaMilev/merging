@@ -22,7 +22,6 @@
         "heading_zC6PGy",
         "text_rxUbVd"
       ],
-      "disabled": true,
       "settings": {
         "image_overlay_opacity": 0,
         "image_height": "medium",
@@ -46,7 +45,7 @@
         "font_size": 14,
         "color_scheme": "",
         "enable_divider": false,
-        "divider_color": "#cccccc",
+        "divider_color": "#ccc",
         "padding_top": 12,
         "padding_bottom": 12
       }

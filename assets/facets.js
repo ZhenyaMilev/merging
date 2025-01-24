@@ -47,7 +47,7 @@ class FacetFiltersForm extends HTMLElement {
     }
 
     sections.forEach((section) => {
-      const url = ${window.location.pathname}?section_id=${section.section}&${searchParams};
+      const url = `${window.location.pathname}?section_id=${section.section}&${searchParams}`;
       const filterDataUrl = (element) => element.url === url;
 
       FacetFiltersForm.filterData.some(filterDataUrl)
@@ -148,7 +148,7 @@ class FacetFiltersForm extends HTMLElement {
         }
 
         if (elementToRender.parentElement) {
-          document.querySelector(#${elementToRender.parentElement.id} .js-filter).before(elementToRender);
+          document.querySelector(`#${elementToRender.parentElement.id} .js-filter`).before(elementToRender);
         }
       }
     });
@@ -165,8 +165,8 @@ class FacetFiltersForm extends HTMLElement {
 
         const newFacetDetailsElement = document.getElementById(closestJSFilterID);
         const newElementSelector = newFacetDetailsElement.classList.contains('mobile-facets__details')
-          ? .mobile-facets__close-button
-          : .facets__summary;
+          ? `.mobile-facets__close-button`
+          : `.facets__summary`;
         const newElementToActivate = newFacetDetailsElement.querySelector(newElementSelector);
 
         const isTextInput = event.target.getAttribute('type') === 'text';
@@ -239,7 +239,7 @@ class FacetFiltersForm extends HTMLElement {
   }
 
   static updateURLHash(searchParams) {
-    history.pushState({ searchParams }, '', ${window.location.pathname}${searchParams && '?'.concat(searchParams)});
+    history.pushState({ searchParams }, '', `${window.location.pathname}${searchParams && '?'.concat(searchParams)}`);
   }
 
   static getSections() {
